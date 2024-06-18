@@ -263,6 +263,7 @@ max-height: 40vh;
 
 .about_desc_content{
   font-family: monospace;
+  overflow: hidden;
   line-height: 20px;
 }
 .about_desc p{
@@ -277,7 +278,6 @@ max-height: 40vh;
   display: -webkit-box;
   -webkit-line-clamp: 5;
   -webkit-box-orient:vertical;
-  overflow: hidden;
 }
 /*PREVIEW*/
 

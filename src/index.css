@@ -1,12 +1,12 @@
 :root{
   --sm_font:0.7rem;
- --primary:#c6a987 ;
+ --primary:beige ;
  --secondary:;
  --accent:#63402c;
  --text:#301f17;
  --alt-text:#8f664a;
  --container_padding:20px;
- --faded_border:#ac8764;
+ --faded_border:#c6a987;
  --blur_background:rgba(0, 0, 0, .6);
  --border_radius:8px;
 

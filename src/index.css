@@ -7,8 +7,10 @@
  --alt-text:#8f664a;
  --container_padding:20px;
  --faded_border:#ac8764;
-}
+ --blur_background:rgba(0, 0, 0, .6);
+ --border_radius:8px;
 
+}
 *{
   margin: 0;
   padding: 0;
@@ -17,25 +19,35 @@
 
 
 body {
-  background: var(--accent);
+  background: var(--primary);
 }
-
+a{
+  color: inherit;
+  text-decoration: none;
+}
 main{
+  margin: 0 auto;
+  max-width: 80rem;
   width: 100%;
+  position: relative;
   color: var(--text) ;
   background: var(--primary);
   overflow-x: hidden;
 }
 /*REUSABLE CLASSES*/
  .container{
-  padding: var(--container_padding) ;
+  padding: 30px var(--container_padding) ;
  }
  .container_left{
   padding-left:var(--container_padding);
  }
-button{
+button,input{
   border: none;
   outline: none;
+}
+input{
+ background: inherit;
+ color: inherit;
 }
 .flex{
   display: flex;
@@ -49,7 +61,7 @@ img{
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: top;
+/*  object-position: top;*/
 }
 .none{
   display: none;
@@ -71,7 +83,7 @@ img{
   content: '';
   position: absolute;
   width: 100%;
-  height: .015rem;
+  height: .007rem;
   background: var(--faded_border);
 }
 .rankings_container::before{
@@ -86,12 +98,16 @@ img{
    display: grid;
   grid-template-columns: repeat(10, 1fr);
 }
+.pointer{
+  cursor: pointer;
+}
 /*HEADER  */
 
 .header{
   position: fixed;
   top: 0;
   width: 100%;
+  z-index: 1000;
 }
 .scroll_progress{
   position: absolute;
@@ -144,11 +160,15 @@ background: rgba(0, 0, 0, .2);
   flex-direction: column;
 }
 .logo_image{
-  overflow: hidden;
-  max-height: 30vh;
+overflow: hidden;
+height: 100%;
+max-height: 40vh;
+}
+.logo_image img{
+
 }
 .name{
-  justify-content: space-between;
+  justify-content:flex-start;
   gap: 20px;
 }
 .name_title>p{
@@ -160,7 +180,7 @@ background: rgba(0, 0, 0, .2);
   letter-spacing: 2px;
 }
 .profile_image{
-  width: 100px;
+  width: clamp(100px, 20vw, 10rem);
   aspect-ratio: 1/1;
   border-radius: 20px;
   overflow: hidden;
@@ -168,7 +188,7 @@ background: rgba(0, 0, 0, .2);
 }
 .profile_left{
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: space-around;
 }
 .buttons{
   padding: 10px;
@@ -270,7 +290,7 @@ background: rgba(0, 0, 0, .2);
 }
 .preview_slide li{
   background: var(--alt-text);
-  width: 160px;  
+  width: clamp(8rem, 40vw, 20rem);  
   height: 250px;
   overflow: hidden;
   border-radius: 8px;
@@ -286,31 +306,236 @@ background: rgba(0, 0, 0, .2);
   background: var(--faded_border);
   border-radius: 10px;
   padding: 15px;
-  width: 90vw;
+  width: 80vw;
+  max-width:  40rem;
+  max-height: 15rem;
+  overflow: auto;
 }
 .stars i{
   color: var(--primary);
 }
 .stars i.active{
-  color: var(--text);
+  color: rgba(200, 160, 10, 1.0);
 }
 .review_slide_head{
   margin-bottom: 7px;
 }
 
 
-.write_review{
+.open_write_review{
   gap: 6px;
   justify-content: flex-end;
 }
 
 
 
+/*SERVICES*/
+.service_content{
+  padding-bottom: var(--container_padding);
+}
+.services_tools_list{
+  align-items: center;
+  justify-content: space-around;
+  margin: var(--container_padding) auto;
+  max-width: 40rem;
+}
 
+.services_list-items{
+  margin-bottom: 10px;
+  display: flex;
+  gap: 5px;
+}
+/*.service_content_sec1 p{
+  text-align: left;
+
+}*/
+.service_content_sec2{
+  background: var(--faded_border);
+ 
+  margin-block: var(--container_padding);
+  border-radius: 8px;
+  padding: var(--container_padding);
+}
+.services_tools_head{
+  text-align: center;
+}
+
+
+  /* CONTACT */
+.contact{
+ transform: scale(0);
+ opacity: 0;
+  position: fixed;
+  width: 100%;
+  inset: 0;
+  color: var(--text);
+  background:var(--blur_background);
+  transition-delay:  .5s;
+}
+.contact.contact_active{
+  opacity: 1;
+  transform: scale(1.0);
+  transition-delay: -.5s;
+}
+.contact_container{
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 45vh;
+  overflow: hidden;
+  background: var(--primary);
+
+  border-radius: 15px 15px 0 0;
+   transform: translateY(100%);
+   transition: transform .25s ease;
+}
+.contact_content{
+  flex-direction: column;
+  height: 100%;
+  position: relative;
+}
+.contact_title{
+
+  text-transform: uppercase;
+}
+.contact_list_container{
+  width: 50%;
+}
+.contact_list_container h5{
+  text-align: center;
+  margin-block: 10px;
+}
+.contact_content_sec1{
+  width: 50%;
+  display: grid;
+  align-items: center;
+  height: 100%;
+}
+.contact_content_sec1 h2{
+   text-align: right;
+   font-size: 1.8rem;
+/*   font-family: cursive;*/
+}
+.contact_info_list a{
+  justify-content: flex-start;
+  gap: 10px;
+  cursor: pointer;
+}
+.contact_info_list a i{
+
+ 
+ font-size: 1.1rem;
+
+}
+.contact_image{
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 48%;
+  height: 60%;
+
+}
+.contact_image::before{
+  position: absolute;
+  content: '';
+  width: 105%;
+  aspect-ratio: 1/1;
+  border: 1px dashed var(--accent);
+  left: -.6rem;
+  bottom: -.6rem;
+  border-right: none;
+  border-top: none;
+
+}
+
+
+.contact_active > .contact_container{
+   transform: translateY(0);
+
+
+}
+
+/*WRITEREVIEW*/
+.write_review{
+  position: fixed;
+  inset: 0;
+  background: var(--blur_background);
+  display: grid;
+ place-items: center;
+  opacity: 0;
+  transform: scale(0);
+}
+.write_review_active{
+opacity: 1;
+transform: scale(1.0);
+}
+.write_review_container{
+  width: 80vw;
+  max-width: 20rem;
+  background: var(--faded_border);
+  border-radius: var(--border_radius);
+  position: relative;
+}
+
+.review_stars{
+  font-size: 2rem;
+}
+.review_form{
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  gap: 30px;
+}
+.review_form label{
+  padding: 8px;
+  text-align: left;
+}
+.review_form label::after{
+  left: 0;
+  background: var(--primary);
+}
+.review_form label span{
+  margin-right: 8px;
+}
+.review_name{
+  text-transform: capitalize;
+  height: 20%;
+}
+
+.review_message{
+  height: 50%;
+  max-height:100px ;
+  overflow: auto;
+  border: none;
+  outline: none;
+  padding: 8px;
+}
+
+.review_form_submit{
+  margin-block: 10px;
+}
+.cancel_write_review{
+  position: absolute;
+  top: 5px;
+   right:5px;
+   color: var(--primary);
+   font-size: 2rem;
+}
+.write_review_content{
+  position: relative;
+   text-align: center;
+}
 ::-webkit-scrollbar{
   width: 2px;
   background: var(--primary);
 }
 ::-webkit-scrollbar-thumb{
   background: var(--accent);
+}
+
+@media (min-width:700px){
+  main{
+    display: none;
+  }
 }

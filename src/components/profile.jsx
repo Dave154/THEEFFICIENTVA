@@ -1,6 +1,9 @@
 import headImg from '../assets/IMG_2963.jpg'
 import {FaPhone} from 'react-icons/fa'
+import {useGlobalContext} from '../context'
 const Profile =()=>{
+
+  const {openContact}=useGlobalContext()
 	return<section className='profile'>	
       <div className='profile_content flex'>
       <div className="logo_image">
@@ -17,8 +20,10 @@ const Profile =()=>{
              	<p>Virtual Assistant</p>	
               </div>
               <div className="buttons">
-              	<button className="c_t_a">Contact</button>
-              	<i className="phone"><FaPhone/></i>
+              	<button className="c_t_a" onClick={openContact}>Contact</button>
+                <a href="https://ZCAL.CO/EFFICIENTFAITHH/DISCOVERYCALL " className='phone'><FaPhone/></a>
+
+              
               </div>
 
              </div>

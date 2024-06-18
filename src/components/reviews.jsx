@@ -1,7 +1,9 @@
 import {FaStar} from 'react-icons/fa'
 import {FaPen} from 'react-icons/fa'
 import {reviews} from './data.jsx'
+import {useGlobalContext} from '../context.jsx'
 const Reviews=()=>{
+	const {isWriteReview,openWriteReview} =useGlobalContext()
 	return<section className="ratings">
 		<div className="ratings_container">
 			<h2 className="title ratings_title container">
@@ -45,10 +47,10 @@ const Reviews=()=>{
 				 	
 				 </ul>
 
-				 <div className="write_review flex container">
+				 <span className="open_write_review flex container pointer" onClick={openWriteReview}>
 				 	<i><FaPen/></i>
 				 	<p>Leave a Review</p>
-				 </div>
+				 </span>
 				 
 			</div>
 		</div>

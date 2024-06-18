@@ -7,7 +7,10 @@ import Profile from './components/profile.jsx'
 import About from './components/about.jsx'
 import Preview from './components/preview.jsx'
 import Reviews from './components/reviews.jsx'
-function App() {
+import Services from './components/services.jsx'
+import Contact from './components/contact.jsx'
+import WriteReview from './components/writeReview.jsx'
+const App=()=> {
   return (
     <main>
      <Nav/>
@@ -15,6 +18,9 @@ function App() {
      <About/>
      <Preview/>
      <Reviews/>
+     <Services/>
+     <Contact/>
+     <WriteReview/>
     </main>
   )
 }

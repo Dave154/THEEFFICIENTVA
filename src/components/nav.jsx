@@ -6,18 +6,24 @@ import {FaPhone} from 'react-icons/fa'
 const Nav =()=>{
 	const headRef=useRef(null)
 
-	const {scroll,isNavHidden, setIsNavHidden} = useGlobalContext()
+	const {scroll,isNavHidden, setIsNavHidden,isContactOpen,openContact} = useGlobalContext()
 
 	  useEffect(()=>{
  const hideNav=setTimeout(()=>{
+ 	
  if(scroll > 20){
  	 setIsNavHidden(true)
- }else{
- 	setIsNavHidden(false)
  }
- console.log(isNavHidden)
+
 }, 5000)
-    setIsNavHidden(false)
+
+  if(scroll < 20){
+
+    setIsNavHidden(true)
+  }else{
+  	setIsNavHidden(false)
+  }
+
     const headScroll= headRef.current;
     const main = document.documentElement.scrollHeight - document.documentElement.clientHeight
 	 headScroll.style.width =`${(scroll/main)* 100}% `  
@@ -27,7 +33,7 @@ const Nav =()=>{
 	return <header className={`${'header'} ${ !isNavHidden && 'active'} `}  >
 		
 		<button className={`${'c_t_a c_t_a_top'} `}>
-			<i><FaPhone/></i>
+			<a href="https://ZCAL.CO/EFFICIENTFAITHH/DISCOVERYCALL" ><FaPhone/></a>
 		</button>
 		<nav className={`${'nav flex'} ${scroll<20 || isNavHidden ? 'nav_hidden': null}`}>
      
@@ -40,14 +46,15 @@ const Nav =()=>{
 		    	<img src='' alt="logo"/>
 		    </div>
  <div>
-		    		<button className="c_t_a">Contact</button>
+		    		<button className="c_t_a" onClick={openContact}>Contact</button>
 
 		    </div>
 		    
 		    
 		</nav>
+
+
 		<div className={`${'scroll_progress'}`} ref={headRef}></div>
 	</header>
 }
 export default Nav
-
